@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchoolSphere Pakistan — Discover the Perfect School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">School<span>Sphere</span></div>
+  <ul class="nav-links">
+    <li><a href="#schools">Schools</a></li>
+    <li><a href="#compare">Compare</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#schools" class="nav-cta">Browse Schools</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-badge">Pakistan's Trusted School Discovery Platform</div>
+  <h1>Find the <em>Perfect School</em><br>for Your Child</h1>
+  <p>Compare schools across location, fee structure, teacher qualifications, and facilities — all in one place.</p>
+  <div class="search-box">
+    <svg width="18" height="18" fill="none" stroke="#999" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="heroSearch" placeholder="Search by school name or area..." />
+    <select id="heroCity">
+      <option value="">All Cities</option>
+      <option value="Lahore">Lahore</option>
+      <option value="Karachi">Karachi</option>
+      <option value="Islamabad">Islamabad</option>
+      <option value="Rawalpindi">Rawalpindi</option>
+    </select>
+    <select id="heroType">
+      <option value="">All Types</option>
+      <option value="Private">Private</option>
+      <option value="Government">Government</option>
+      <option value="Semi-Government">Semi-Govt</option>
+    </select>
+    <button class="search-btn" onclick="doSearch()">Search Schools</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Schools Listed</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">Cities Covered</div></div>
+    <div class="stat"><div class="stat-num">25K+</div><div class="stat-label">Parents Helped</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction Rate</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="about">
+  <div class="section-header">
+    <div class="section-label">Why SchoolSphere</div>
+    <div class="section-title">Everything You Need<br>to Decide with Confidence</div>
+    <div class="section-sub">We gather all the critical information parents need when choosing a school for their children.</div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📍</div>
+      <h3>School Locations</h3>
+      <p>View exact school locations on an interactive map. Find schools closest to your home or workplace with ease.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Fee Structures</h3>
+      <p>Detailed breakdown of admission fees, monthly tuition, annual charges, and any additional costs — no surprises.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👩‍🏫</div>
+      <h3>Teacher Portfolios</h3>
+      <p>Browse teacher qualifications, experience, and subjects taught. Know who will educate your child before enrolling.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏫</div>
+      <h3>School Facilities</h3>
+      <p>Labs, libraries, sports grounds, canteens, transport — see all available facilities at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚖️</div>
+      <h3>Side-by-Side Compare</h3>
+      <p>Compare up to 3 schools simultaneously across all key metrics to make the most informed decision.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <h3>Ratings & Reviews</h3>
+      <p>Real reviews from real parents. Honest ratings help you see beyond brochures and marketing materials.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOOLS GRID -->
+<section class="schools" id="schools">
+  <div class="section-header">
+    <div class="section-label">School Directory</div>
+    <div class="section-title">Browse Top Schools</div>
+    <div class="section-sub">Detailed profiles of verified schools across major cities.</div>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSchools('all', this)">All Schools</button>
+    <button class="filter-btn" onclick="filterSchools('Private', this)">Private</button>
+    <button class="filter-btn" onclick="filterSchools('Government', this)">Government</button>
+    <button class="filter-btn" onclick="filterSchools('Lahore', this)">Lahore</button>
+    <button class="filter-btn" onclick="filterSchools('Karachi', this)">Karachi</button>
+    <button class="filter-btn" onclick="filterSchools('Islamabad', this)">Islamabad</button>
+  </div>
+  <div class="schools-grid" id="schoolsGrid">
+    <p style="text-align:center; grid-column:1/-1; color:#7A8A9A;">Loading schools from database...</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-header">
+    <div class="section-label">The Process</div>
+    <div class="section-title">How SchoolSphere Works</div>
+    <div class="section-sub" style="color:rgba(255,255,255,0.45)">Finding the right school is just four simple steps away.</div>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Search</h3>
+      <p>Enter your city, preferred area, or budget. Filter by school type or grade level.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Browse</h3>
+      <p>Explore detailed profiles with photos, fees, teachers, facilities, and location maps.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Compare</h3>
+      <p>Select 2–3 schools and compare them side by side to highlight differences and value.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Decide</h3>
+      <p>Use real data and parent reviews to make a confident, informed choice for your child.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TOOL -->
+<section class="compare" id="compare">
+  <div class="section-header">
+    <div class="section-label">Comparison Tool</div>
+    <div class="section-title">Compare Schools Side by Side</div>
+    <div class="section-sub">Select two schools below and instantly see how they stack up.</div>
+  </div>
+  <div class="compare-widget">
+    <div class="compare-selects">
+      <select class="compare-select" id="compareA" onchange="updateCompare()">
+        <option value="">Select first school...</option>
+      </select>
+      <div class="compare-vs">VS</div>
+      <select class="compare-select" id="compareB" onchange="updateCompare()">
+        <option value="">Select second school...</option>
+      </select>
+    </div>
+    <div id="compareResult"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <div class="section-label">Parent Stories</div>
+    <div class="section-title">What Parents Are Saying</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"SchoolSphere saved me weeks of research. I compared 5 schools in one afternoon and enrolled my daughter with total confidence."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div><div class="testi-name">Ayesha Khan</div><div class="testi-role">Parent, Lahore</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"The fee structure section is a lifesaver. No hidden surprises after admission — exactly what we needed."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MR</div>
+        <div><div class="testi-name">Muhammad Raza</div><div class="testi-role">Parent, Karachi</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★☆</div>
+      <div class="testi-text">"I loved being able to see teacher qualifications. It really helps you understand the calibre of education your child will receive."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SR</div>
+        <div><div class="testi-name">Sana Rehman</div><div class="testi-role">Parent, Islamabad</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Start Your School Search Today</h2>
+  <p>Join thousands of parents who found the perfect school for their child.</p>
+  <div class="cta-btns">
+    <button class="btn-primary" onclick="document.getElementById('schools').scrollIntoView({behavior:'smooth'})">Browse All Schools</button>
+    <button class="btn-outline" onclick="document.getElementById('compare').scrollIntoView({behavior:'smooth'})">Compare Schools</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">School<span>Sphere</span></div>
+      <p class="footer-desc">Pakistan's most comprehensive school discovery platform — helping parents make informed education decisions.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#">Browse Schools</a></li>
+        <li><a href="#">Compare Schools</a></li>
+        <li><a href="#">Top Rated</a></li>
+        <li><a href="#">New Listings</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Cities</h5>
+      <ul>
+        <li><a href="#">Lahore</a></li>
+        <li><a href="#">Karachi</a></li>
+        <li><a href="#">Islamabad</a></li>
+        <li><a href="#">Rawalpindi</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <ul>
+        <li><a href="#">About Project</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">List a School</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 SchoolSphere Pakistan — Final Year Project</p>
+    <p>Built with ❤️ for better education decisions</p>
+  </div>
+</footer>
+
+<!-- SCHOOL DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div class="modal-school-name" id="modalName"></div>
+      <div class="modal-location" id="modalLocation"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
